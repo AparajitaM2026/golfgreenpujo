@@ -1,5 +1,8 @@
 import React from 'react';
-import { Compass, Sparkles, Award, Image as ImageIcon, ShieldCheck } from 'lucide-react';
+import { Compass, Sparkles, Award, Image as ImageIcon, ShieldCheck, Camera } from 'lucide-react';
+import themeImg1 from '../assets/gallery/pujo_real_005.jpg';
+import themeImg2 from '../assets/gallery/pujo_real_003.jpeg';
+import themeImg3 from '../assets/gallery/pujo_real_006.jpeg';
 
 export default function MandapTheme({ setActivePage }) {
   return (
@@ -44,11 +47,39 @@ export default function MandapTheme({ setActivePage }) {
             </div>
           </div>
 
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full h-80 rounded-3xl bg-gradient-to-br from-red-950 via-slate-900 to-amber-950 border-2 border-amber-400/40 p-6 flex flex-col items-center justify-center text-center shadow-xl">
-              <span className="text-6xl mb-4">🛕</span>
-              <h3 className="font-heading font-black text-white text-xl">Golf Green Central Park</h3>
-              <p className="text-xs text-amber-300 mt-2">Award-Winning Eco-Friendly Mandap</p>
+          <div className="lg:col-span-5">
+            <div className="rounded-3xl overflow-hidden border-2 border-amber-400/40 shadow-xl relative h-80 group">
+              <img 
+                src={themeImg1} 
+                alt="Golf Green Mandap Art" 
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 right-4 text-center">
+                <h3 className="font-heading font-black text-white text-lg drop-shadow-md">Golf Green Central Park Mandap</h3>
+                <p className="text-xs text-amber-300">Award-Winning Eco-Friendly Architecture</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Theme Photo Showcase */}
+        <div className="space-y-6">
+          <div className="text-center max-w-xl mx-auto space-y-2">
+            <h3 className="text-2xl font-black font-heading text-white">Artistry & Illumination Showcase</h3>
+            <p className="text-slate-400 text-xs">Exquisite details captured live at Golf Green Central Park Ground</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="rounded-3xl overflow-hidden border border-slate-800 h-72 relative group bg-slate-900">
+              <img src={themeImg2} alt="Mandap Detail" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+              <div className="absolute bottom-4 left-4 font-bold text-sm text-white drop-shadow">Terracotta & Bamboo Artisan Work</div>
+            </div>
+            <div className="rounded-3xl overflow-hidden border border-slate-800 h-72 relative group bg-slate-900">
+              <img src={themeImg3} alt="Chandelier & Lighting" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+              <div className="absolute bottom-4 left-4 font-bold text-sm text-white drop-shadow">Traditional Chandannagar Lighting Art</div>
             </div>
           </div>
         </div>

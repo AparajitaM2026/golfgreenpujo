@@ -13,8 +13,19 @@ import {
   Clock,
   MapPin,
   Flame,
-  Award
+  Award,
+  Eye,
+  Camera
 } from 'lucide-react';
+
+// Import key real photos directly for guaranteed loading
+import heroPhoto from '../assets/gallery/pujo_real_001.jpg';
+import murtiPhoto1 from '../assets/gallery/pujo_real_002.jpg';
+import murtiPhoto2 from '../assets/gallery/pujo_real_004.jpg';
+import mandapPhoto1 from '../assets/gallery/pujo_real_005.jpg';
+import celebrationPhoto1 from '../assets/gallery/pujo_real_007.jpg';
+import celebrationPhoto2 from '../assets/gallery/pujo_real_008.jpg';
+import dhunuchiPhoto from '../assets/gallery/pujo_real_011.jpg';
 
 export default function Home({ noticeText, pujoSchedule, culturalLineup, setActivePage }) {
   // Countdown to Durga Puja (Sasthi)
@@ -35,8 +46,17 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
     return () => clearInterval(timer);
   }, []);
 
+  const featuredPhotos = [
+    { title: 'Sabeki Pratima & Sacred Altar', img: murtiPhoto1, tag: 'Sabeki Murti' },
+    { title: 'Mandap Lighting & Architecture', img: mandapPhoto1, tag: 'Mandap Art' },
+    { title: 'Maha Saptami Pushpanjali', img: murtiPhoto2, tag: 'Rituals' },
+    { title: 'Cultural Night & Dhunuchi Naach', img: dhunuchiPhoto, tag: 'Festivities' },
+    { title: 'Evening Aarti & Dhak Beats', img: celebrationPhoto1, tag: 'Celebrations' },
+    { title: 'Community Fellowship & Devotion', img: celebrationPhoto2, tag: 'Sharadotsav' },
+  ];
+
   return (
-    <div className="space-y-0 font-sans">
+    <div className="space-y-0 font-sans bg-slate-950 text-slate-100">
       
       {/* 1. Live Marquee Notice Banner */}
       <div className="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 text-slate-950 py-2.5 px-4 shadow-md flex items-center gap-3 overflow-hidden text-xs font-black">
@@ -51,7 +71,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
       </div>
 
       {/* 2. Hero Festival Section */}
-      <section className="relative bg-gradient-to-br from-slate-950 via-red-950 to-slate-950 text-white py-20 px-4 overflow-hidden border-b border-amber-500/30">
+      <section className="relative bg-gradient-to-br from-slate-950 via-red-950 to-slate-950 text-white py-16 lg:py-24 px-4 overflow-hidden border-b border-amber-500/30">
         {/* Festive background glows */}
         <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-red-600/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
@@ -83,48 +103,54 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
                 onClick={() => setActivePage('gallery')}
                 className="bg-slate-900/90 hover:bg-slate-800 text-white border border-amber-500/40 px-7 py-4 rounded-2xl font-bold text-sm transition flex items-center gap-2 shadow-lg"
               >
-                <Sparkles size={18} className="text-amber-400" />
+                <Camera size={18} className="text-amber-400" />
                 <span>Photo & Video Gallery</span>
               </button>
             </div>
           </div>
 
-          {/* Right Column: Live Durga Puja Countdown Card */}
-          <div className="lg:col-span-5">
-            <div className="bg-slate-900/90 p-8 rounded-3xl border-2 border-amber-500/40 shadow-2xl backdrop-blur space-y-6 text-center relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-red-800 text-amber-300 font-extrabold text-[10px] uppercase px-4 py-1 rounded-bl-xl border-b border-l border-amber-400/40">
-                Countdown to Sasthi
-              </div>
-
-              <div className="inline-block p-4 rounded-full bg-red-950/80 border border-amber-400/40 shadow-inner text-4xl mb-2">
-                🛕
-              </div>
-
-              <h3 className="font-heading font-extrabold text-2xl text-white">
-                Maha Sasthi Countdown
-              </h3>
-
-              <div className="grid grid-cols-4 gap-3 text-center">
-                <div className="bg-slate-950 p-3 rounded-2xl border border-amber-500/30">
-                  <div className="text-2xl sm:text-3xl font-black text-amber-400">{timeLeft.days}</div>
-                  <div className="text-[10px] font-bold uppercase text-slate-400 mt-1">Days</div>
+          {/* Right Column: Hero Image & Countdown Overlay Card */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl group">
+              <img 
+                src={heroPhoto} 
+                alt="Golf Green Durga Puja Idol" 
+                className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+              
+              <div className="absolute bottom-6 left-6 right-6 bg-slate-950/80 backdrop-blur-md p-6 rounded-2xl border border-amber-500/40 space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <Sparkles size={14} /> Maha Sasthi Countdown
+                  </span>
+                  <span className="text-[10px] bg-red-800 text-amber-300 font-extrabold px-2.5 py-0.5 rounded-full">
+                    Live
+                  </span>
                 </div>
-                <div className="bg-slate-950 p-3 rounded-2xl border border-amber-500/30">
-                  <div className="text-2xl sm:text-3xl font-black text-amber-400">{timeLeft.hours}</div>
-                  <div className="text-[10px] font-bold uppercase text-slate-400 mt-1">Hours</div>
-                </div>
-                <div className="bg-slate-950 p-3 rounded-2xl border border-amber-500/30">
-                  <div className="text-2xl sm:text-3xl font-black text-amber-400">{timeLeft.minutes}</div>
-                  <div className="text-[10px] font-bold uppercase text-slate-400 mt-1">Mins</div>
-                </div>
-                <div className="bg-slate-950 p-3 rounded-2xl border border-amber-500/30">
-                  <div className="text-2xl sm:text-3xl font-black text-amber-400">{timeLeft.seconds}</div>
-                  <div className="text-[10px] font-bold uppercase text-slate-400 mt-1">Secs</div>
-                </div>
-              </div>
 
-              <div className="pt-2 border-t border-slate-800 text-xs text-amber-300 font-bold flex items-center justify-center gap-2">
-                <MapPin size={15} /> Venue: Golf Green Central Park Ground
+                <div className="grid grid-cols-4 gap-2 text-center">
+                  <div className="bg-slate-900/90 p-2.5 rounded-xl border border-amber-500/30">
+                    <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.days}</div>
+                    <div className="text-[9px] font-bold uppercase text-slate-400">Days</div>
+                  </div>
+                  <div className="bg-slate-900/90 p-2.5 rounded-xl border border-amber-500/30">
+                    <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.hours}</div>
+                    <div className="text-[9px] font-bold uppercase text-slate-400">Hours</div>
+                  </div>
+                  <div className="bg-slate-900/90 p-2.5 rounded-xl border border-amber-500/30">
+                    <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.minutes}</div>
+                    <div className="text-[9px] font-bold uppercase text-slate-400">Mins</div>
+                  </div>
+                  <div className="bg-slate-900/90 p-2.5 rounded-xl border border-amber-500/30">
+                    <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.seconds}</div>
+                    <div className="text-[9px] font-bold uppercase text-slate-400">Secs</div>
+                  </div>
+                </div>
+
+                <div className="text-xs text-amber-300 font-bold flex items-center justify-center gap-1.5 pt-1">
+                  <MapPin size={14} /> Venue: Golf Green Central Park Ground
+                </div>
               </div>
             </div>
           </div>
@@ -132,8 +158,61 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
         </div>
       </section>
 
-      {/* 3. Key Festival Highlights Cards */}
-      <section className="py-16 bg-slate-950 border-b border-slate-900">
+      {/* 3. Featured Photo Showcase Section */}
+      <section className="py-20 bg-slate-950 border-b border-slate-900 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-4">
+            <div>
+              <span className="text-xs font-black text-amber-400 uppercase tracking-widest flex items-center gap-1.5 mb-2">
+                <Camera size={14} /> Real Pujo Moments
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black font-heading text-white">
+                Golf Green Durga Puja Photo Gallery
+              </h2>
+            </div>
+            <button
+              onClick={() => setActivePage('gallery')}
+              className="bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-6 py-3 rounded-xl text-xs transition shadow-lg flex items-center gap-2 shrink-0"
+            >
+              <span>View All 130+ Photos</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredPhotos.map((photo, idx) => (
+              <div 
+                key={idx}
+                onClick={() => setActivePage('gallery')}
+                className="group relative rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/60 transition cursor-pointer shadow-xl h-72 bg-slate-900"
+              >
+                <img 
+                  src={photo.img} 
+                  alt={photo.title} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                <div className="absolute top-4 left-4 bg-red-950/90 text-amber-300 px-3 py-1 rounded-full text-[10px] font-extrabold border border-amber-500/40">
+                  {photo.tag}
+                </div>
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <h4 className="text-white font-bold text-sm leading-tight drop-shadow-md">
+                    {photo.title}
+                  </h4>
+                  <div className="w-9 h-9 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">
+                    <Eye size={18} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. Key Festival Highlights Cards */}
+      <section className="py-16 bg-slate-900/60 border-b border-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
@@ -213,7 +292,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
         </div>
       </section>
 
-      {/* 4. Puja Nirghanto Preview Section */}
+      {/* 5. Puja Nirghanto Preview Section */}
       <section className="py-16 bg-gradient-to-b from-slate-950 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
