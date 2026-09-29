@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { Camera, Video, Play, Eye, X, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 
-// Vite Glob Import for all real downloaded pujo photos
-const realImageModules = import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true });
+// Vite Glob Import with explicit import: 'default' for clean string URLs
+const realImageModules = import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
+
+const resolveSrc = (mod) => {
+  if (typeof mod === 'string') return mod;
+  if (mod && typeof mod === 'object' && typeof mod.default === 'string') return mod.default;
+  return mod;
+};
+
 const allRealPhotos = Object.entries(realImageModules).map(([path, module], idx) => {
   const filename = path.split('/').pop();
   return {
     id: idx + 1,
-    title: `Golf Green Durga Puja Real Photo #${idx + 1}`,
-    src: module.default || module,
+    title: `Golf Green Durga Puja Photo #${idx + 1}`,
+    src: resolveSrc(module),
     filename: filename,
     category: idx % 2 === 0 ? 'Sabeki Murti & Mandap' : 'Festive Celebrations'
   };
@@ -32,7 +39,7 @@ export default function Gallery() {
   const currentPhotos = filteredPhotos.slice(indexOfFirstPhoto, indexOfLastPhoto);
 
   return (
-    <div className="bg-slate-950 min-h-screen py-12 px-4 sm:px-6 lg:px-8 font-sans">
+    <div className="bg-slate-950 min-h-screen py-12 px-4 sm:px-6 lg:px-8 font-sans text-slate-100">
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Header */}
@@ -85,15 +92,12 @@ export default function Gallery() {
                 onClick={() => setSelectedMedia(photo)}
                 className="bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition cursor-pointer group shadow-lg flex flex-col justify-between"
               >
-                <div className="relative h-64 overflow-hidden bg-slate-950">
+                <div className="relative h-64 overflow-hidden bg-slate-950 flex items-center justify-center">
                   <img
                     src={photo.src}
                     alt={photo.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                     loading="lazy"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                    }}
                   />
                   <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                     <Eye size={36} className="text-amber-400" />
@@ -129,24 +133,20 @@ export default function Gallery() {
 
         {/* Modal Lightbox */}
         {selectedMedia && (
-          <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
-            <div className="bg-slate-900 rounded-3xl p-6 max-w-4xl w-full border border-amber-500/40 relative shadow-2xl space-y-4">
+          <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+            <div className="relative max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden border border-amber-500/40 shadow-2xl p-4">
               <button
                 onClick={() => setSelectedMedia(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-slate-950 text-slate-400 hover:text-white border border-slate-800 z-10"
+                className="absolute top-4 right-4 z-10 p-2 bg-slate-950/80 hover:bg-red-600 text-white rounded-full transition border border-slate-700"
               >
                 <X size={20} />
               </button>
-
-              <div className="h-[500px] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center">
+              <div className="relative h-[70vh] flex items-center justify-center bg-slate-950 rounded-2xl overflow-hidden">
                 <img src={selectedMedia.src} alt={selectedMedia.title} className="max-w-full max-h-full object-contain" />
               </div>
-
-              <div className="flex justify-between items-center text-xs">
-                <span className="font-bold text-amber-400 bg-amber-500/20 px-3 py-1 rounded-full border border-amber-500/30">
-                  {selectedMedia.filename}
-                </span>
-                <span className="text-slate-400 font-bold">Golf Green Durga Puja Gallery</span>
+              <div className="p-4 text-center">
+                <h3 className="font-heading font-extrabold text-white text-lg">{selectedMedia.title}</h3>
+                <p className="text-xs text-amber-400 font-bold uppercase mt-1">{selectedMedia.category}</p>
               </div>
             </div>
           </div>
