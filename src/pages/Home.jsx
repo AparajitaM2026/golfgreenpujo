@@ -18,13 +18,13 @@ import {
   Camera
 } from 'lucide-react';
 
-const heroPhoto = '/gallery/pujo_real_001.jpg';
-const murtiPhoto1 = '/gallery/pujo_real_002.jpg';
-const murtiPhoto2 = '/gallery/pujo_real_004.jpg';
-const mandapPhoto1 = '/gallery/pujo_real_005.jpg';
-const celebrationPhoto1 = '/gallery/pujo_real_007.jpg';
-const celebrationPhoto2 = '/gallery/pujo_real_008.jpg';
-const dhunuchiPhoto = '/gallery/pujo_real_011.jpg';
+const heroPhoto = 'gallery/hero_durga_idol.png';
+const murtiPhoto1 = 'gallery/pujo_real_002.jpg';
+const murtiPhoto2 = 'gallery/pujo_real_004.jpg';
+const mandapPhoto1 = 'gallery/pujo_real_005.jpg';
+const celebrationPhoto1 = 'gallery/pujo_real_007.jpg';
+const celebrationPhoto2 = 'gallery/pujo_real_008.jpg';
+const dhunuchiPhoto = 'gallery/pujo_real_011.jpg';
 
 export default function Home({ noticeText, pujoSchedule, culturalLineup, setActivePage }) {
   // Countdown to Durga Puja (Sasthi)
@@ -55,9 +55,16 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
   ];
 
   const handleImgError = (e, fallbackFilename) => {
-    if (!e.target.dataset.triedFallback) {
-      e.target.dataset.triedFallback = 'true';
-      e.target.src = `gallery/${fallbackFilename}`;
+    const step = parseInt(e.target.dataset.step || '0', 10);
+    if (step === 0) {
+      e.target.dataset.step = '1';
+      e.target.src = `/gallery/${fallbackFilename}`;
+    } else if (step === 1) {
+      e.target.dataset.step = '2';
+      e.target.src = `./gallery/${fallbackFilename}`;
+    } else if (step === 2) {
+      e.target.dataset.step = '3';
+      e.target.src = `public/gallery/${fallbackFilename}`;
     }
   };
 
@@ -122,7 +129,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
                 src={heroPhoto} 
                 alt="Golf Green Durga Puja Idol" 
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
-                onError={(e) => handleImgError(e, 'pujo_real_001.jpg')}
+                onError={(e) => handleImgError(e, 'hero_durga_idol.png')}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
               
