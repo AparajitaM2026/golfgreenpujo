@@ -17,8 +17,18 @@ export default function Footer({ setActivePage }) {
           {/* Col 1: About Pujo Committee */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-red-600 flex items-center justify-center text-xl shadow-md">
-                🛕
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-red-600 p-0.5 overflow-hidden shadow-md">
+                <img 
+                  src="Logo-GG.png" 
+                  alt="Golf Green Logo" 
+                  className="w-full h-full object-cover rounded-full"
+                  onError={(e) => {
+                    if (!e.target.dataset.tried) {
+                      e.target.dataset.tried = 'true';
+                      e.target.src = 'gallery/Logo-GG.png';
+                    }
+                  }}
+                />
               </div>
               <h3 className="font-heading font-black text-white text-lg tracking-wide">
                 Golf Green Sharadotsav

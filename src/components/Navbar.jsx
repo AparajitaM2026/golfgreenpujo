@@ -44,8 +44,18 @@ export default function Navbar({ activePage, setActivePage }) {
             className="flex items-center gap-3 cursor-pointer group"
           >
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 via-red-600 to-red-900 p-0.5 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition duration-300">
-              <div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center border border-amber-400/50">
-                <span className="text-2xl drop-shadow">🛕</span>
+              <div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center border border-amber-400/50 overflow-hidden">
+                <img 
+                  src="Logo-GG.png" 
+                  alt="Golf Green Durga Puja Logo" 
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    if (!e.target.dataset.tried) {
+                      e.target.dataset.tried = 'true';
+                      e.target.src = 'gallery/Logo-GG.png';
+                    }
+                  }}
+                />
               </div>
             </div>
             <div>
