@@ -1,25 +1,43 @@
 import React, { useState } from 'react';
 import { Camera, Video, Play, Eye, X, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 
-// Vite Glob Import with explicit import: 'default' for clean string URLs
-const realImageModules = import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
+const photoFiles = [
+  "pujo_real_001.jpg", "pujo_real_002.jpg", "pujo_real_003.jpeg", "pujo_real_004.jpg", "pujo_real_005.jpg", 
+  "pujo_real_006.jpeg", "pujo_real_007.jpg", "pujo_real_008.jpg", "pujo_real_009.jpg", "pujo_real_010.jpg", 
+  "pujo_real_011.jpg", "pujo_real_012.jpeg", "pujo_real_013.jpg", "pujo_real_014.jpeg", "pujo_real_015.jpeg", 
+  "pujo_real_016.jpg", "pujo_real_017.jpg", "pujo_real_018.jpeg", "pujo_real_019.jpg", "pujo_real_020.jpeg", 
+  "pujo_real_021.jpeg", "pujo_real_022.jpeg", "pujo_real_023.jpg", "pujo_real_024.jpg", "pujo_real_025.jpeg", 
+  "pujo_real_026.png", "pujo_real_027.jpg", "pujo_real_028.jpg", "pujo_real_029.jpg", "pujo_real_030.jpg", 
+  "pujo_real_031.jpg", "pujo_real_032.jpg", "pujo_real_033.jpg", "pujo_real_034.jpg", "pujo_real_035.jpg", 
+  "pujo_real_036.jpg", "pujo_real_037.jpg", "pujo_real_038.jpg", "pujo_real_039.jpeg", "pujo_real_040.jpg", 
+  "pujo_real_041.jpeg", "pujo_real_042.jpeg", "pujo_real_043.jpeg", "pujo_real_044.jpeg", "pujo_real_045.jpg", 
+  "pujo_real_046.jpeg", "pujo_real_047.jpg", "pujo_real_048.jpg", "pujo_real_049.jpg", "pujo_real_050.jpeg", 
+  "pujo_real_051.jpeg", "pujo_real_052.jpg", "pujo_real_053.jpeg", "pujo_real_054.jpg", "pujo_real_055.jpg", 
+  "pujo_real_056.jpg", "pujo_real_057.jpg", "pujo_real_058.jpeg", "pujo_real_059.jpeg", "pujo_real_060.jpeg", 
+  "pujo_real_061.jpeg", "pujo_real_062.jpg", "pujo_real_063.jpg", "pujo_real_064.jpg", "pujo_real_065.jpg", 
+  "pujo_real_066.jpg", "pujo_real_067.jpeg", "pujo_real_068.jpg", "pujo_real_069.jpg", "pujo_real_070.png", 
+  "pujo_real_071.jpeg", "pujo_real_072.jpg", "pujo_real_073.jpg", "pujo_real_074.jpg", "pujo_real_075.jpg", 
+  "pujo_real_076.jpeg", "pujo_real_077.webp", "pujo_real_078.jpg", "pujo_real_079.jpeg", "pujo_real_080.jpeg", 
+  "pujo_real_081.jpg", "pujo_real_082.jpeg", "pujo_real_083.jpg", "pujo_real_084.jpg", "pujo_real_085.png", 
+  "pujo_real_086.jpg", "pujo_real_087.jpg", "pujo_real_088.jpg", "pujo_real_089.jpg", "pujo_real_090.jpg", 
+  "pujo_real_091.jpg", "pujo_real_092.jpeg", "pujo_real_093.jpeg", "pujo_real_094.jpeg", "pujo_real_095.jpg", 
+  "pujo_real_096.jpg", "pujo_real_097.png", "pujo_real_098.jpg", "pujo_real_099.jpg", "pujo_real_100.jpg", 
+  "pujo_real_101.jpg", "pujo_real_102.jpg", "pujo_real_103.jpg", "pujo_real_104.jpg", "pujo_real_105.jpg", 
+  "pujo_real_106.jpg", "pujo_real_107.jpg", "pujo_real_108.jpeg", "pujo_real_109.jpeg", "pujo_real_110.jpg", 
+  "pujo_real_111.jpeg", "pujo_real_112.jpg", "pujo_real_113.jpg", "pujo_real_114.jpg", "pujo_real_115.jpeg", 
+  "pujo_real_116.jpeg", "pujo_real_117.jpg", "pujo_real_118.jpeg", "pujo_real_119.jpeg", "pujo_real_120.jpg", 
+  "pujo_real_121.jpg", "pujo_real_122.jpg", "pujo_real_123.jpeg", "pujo_real_124.jpg", "pujo_real_125.jpeg", 
+  "pujo_real_126.jpg", "pujo_real_127.jpeg", "pujo_real_128.jpeg", "pujo_real_129.jpg", "pujo_real_130.jpg", 
+  "pujo_real_131.jpg", "pujo_real_132.jpg", "pujo_real_133.jpeg", "pujo_real_134.jpg", "pujo_real_135.jpg"
+];
 
-const resolveSrc = (mod) => {
-  if (typeof mod === 'string') return mod;
-  if (mod && typeof mod === 'object' && typeof mod.default === 'string') return mod.default;
-  return mod;
-};
-
-const allRealPhotos = Object.entries(realImageModules).map(([path, module], idx) => {
-  const filename = path.split('/').pop();
-  return {
-    id: idx + 1,
-    title: `Golf Green Durga Puja Photo #${idx + 1}`,
-    src: resolveSrc(module),
-    filename: filename,
-    category: idx % 2 === 0 ? 'Sabeki Murti & Mandap' : 'Festive Celebrations'
-  };
-});
+const allRealPhotos = photoFiles.map((fn, idx) => ({
+  id: idx + 1,
+  title: `Golf Green Durga Puja Photo #${idx + 1}`,
+  src: `/gallery/${fn}`,
+  filename: fn,
+  category: idx % 2 === 0 ? 'Sabeki Murti & Mandap' : 'Festive Celebrations'
+}));
 
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -98,6 +116,12 @@ export default function Gallery() {
                     alt={photo.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                     loading="lazy"
+                    onError={(e) => {
+                      if (!e.target.dataset.triedFallback) {
+                        e.target.dataset.triedFallback = 'true';
+                        e.target.src = `gallery/${photo.filename}`;
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                     <Eye size={36} className="text-amber-400" />

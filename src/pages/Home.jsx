@@ -18,14 +18,13 @@ import {
   Camera
 } from 'lucide-react';
 
-// Import key real photos directly for guaranteed loading
-import heroPhoto from '../assets/gallery/pujo_real_001.jpg';
-import murtiPhoto1 from '../assets/gallery/pujo_real_002.jpg';
-import murtiPhoto2 from '../assets/gallery/pujo_real_004.jpg';
-import mandapPhoto1 from '../assets/gallery/pujo_real_005.jpg';
-import celebrationPhoto1 from '../assets/gallery/pujo_real_007.jpg';
-import celebrationPhoto2 from '../assets/gallery/pujo_real_008.jpg';
-import dhunuchiPhoto from '../assets/gallery/pujo_real_011.jpg';
+const heroPhoto = '/gallery/pujo_real_001.jpg';
+const murtiPhoto1 = '/gallery/pujo_real_002.jpg';
+const murtiPhoto2 = '/gallery/pujo_real_004.jpg';
+const mandapPhoto1 = '/gallery/pujo_real_005.jpg';
+const celebrationPhoto1 = '/gallery/pujo_real_007.jpg';
+const celebrationPhoto2 = '/gallery/pujo_real_008.jpg';
+const dhunuchiPhoto = '/gallery/pujo_real_011.jpg';
 
 export default function Home({ noticeText, pujoSchedule, culturalLineup, setActivePage }) {
   // Countdown to Durga Puja (Sasthi)
@@ -54,6 +53,13 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
     { title: 'Evening Aarti & Dhak Beats', img: celebrationPhoto1, tag: 'Celebrations' },
     { title: 'Community Fellowship & Devotion', img: celebrationPhoto2, tag: 'Sharadotsav' },
   ];
+
+  const handleImgError = (e, fallbackFilename) => {
+    if (!e.target.dataset.triedFallback) {
+      e.target.dataset.triedFallback = 'true';
+      e.target.src = `gallery/${fallbackFilename}`;
+    }
+  };
 
   return (
     <div className="space-y-0 font-sans bg-slate-950 text-slate-100">
@@ -116,6 +122,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
                 src={heroPhoto} 
                 alt="Golf Green Durga Puja Idol" 
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => handleImgError(e, 'pujo_real_001.jpg')}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
               
@@ -191,6 +198,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
                   src={photo.img} 
                   alt={photo.title} 
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                  onError={(e) => handleImgError(e, photo.img.split('/').pop())}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
                 <div className="absolute top-4 left-4 bg-red-950/90 text-amber-300 px-3 py-1 rounded-full text-[10px] font-extrabold border border-amber-500/40">
