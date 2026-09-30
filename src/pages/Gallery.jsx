@@ -34,7 +34,7 @@ const photoFiles = [
 const allRealPhotos = photoFiles.map((fn, idx) => ({
   id: idx + 1,
   title: `Golf Green Durga Puja Photo #${idx + 1}`,
-  src: `/gallery/${fn}`,
+  src: `gallery/${fn}`,
   filename: fn,
   category: idx % 2 === 0 ? 'Sabeki Murti & Mandap' : 'Festive Celebrations'
 }));
@@ -55,6 +55,20 @@ export default function Gallery() {
   const indexOfLastPhoto = currentPage * photosPerPage;
   const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
   const currentPhotos = filteredPhotos.slice(indexOfFirstPhoto, indexOfLastPhoto);
+
+  const handleImgFallback = (e, photo) => {
+    const step = parseInt(e.target.dataset.step || '0', 10);
+    if (step === 0) {
+      e.target.dataset.step = '1';
+      e.target.src = `/gallery/${photo.filename}`;
+    } else if (step === 1) {
+      e.target.dataset.step = '2';
+      e.target.src = `./gallery/${photo.filename}`;
+    } else if (step === 2) {
+      e.target.dataset.step = '3';
+      e.target.src = `public/gallery/${photo.filename}`;
+    }
+  };
 
   return (
     <div className="bg-slate-950 min-h-screen py-12 px-4 sm:px-6 lg:px-8 font-sans text-slate-100">
@@ -116,12 +130,7 @@ export default function Gallery() {
                     alt={photo.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                     loading="lazy"
-                    onError={(e) => {
-                      if (!e.target.dataset.triedFallback) {
-                        e.target.dataset.triedFallback = 'true';
-                        e.target.src = `gallery/${photo.filename}`;
-                      }
-                    }}
+                    onError={(e) => handleImgFallback(e, photo)}
                   />
                   <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
                     <Eye size={36} className="text-amber-400" />
@@ -166,7 +175,12 @@ export default function Gallery() {
                 <X size={20} />
               </button>
               <div className="relative h-[70vh] flex items-center justify-center bg-slate-950 rounded-2xl overflow-hidden">
-                <img src={selectedMedia.src} alt={selectedMedia.title} className="max-w-full max-h-full object-contain" />
+                <img 
+                  src={selectedMedia.src} 
+                  alt={selectedMedia.title} 
+                  className="max-w-full max-h-full object-contain" 
+                  onError={(e) => handleImgFallback(e, selectedMedia)}
+                />
               </div>
               <div className="p-4 text-center">
                 <h3 className="font-heading font-extrabold text-white text-lg">{selectedMedia.title}</h3>
