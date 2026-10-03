@@ -27,20 +27,29 @@ const celebrationPhoto2 = 'gallery/pujo_real_008.jpg';
 const dhunuchiPhoto = 'gallery/pujo_real_011.jpg';
 
 export default function Home({ noticeText, pujoSchedule, culturalLineup, setActivePage }) {
-  // Countdown to Durga Puja (Sasthi)
-  const [timeLeft, setTimeLeft] = useState({
-    days: 26,
-    hours: 14,
-    minutes: 32,
-    seconds: 45
-  });
+  // Dynamic Live Countdown to Maha Sasthi 2026 (17 October 2026)
+  const calculateTimeLeft = () => {
+    const sasthiTarget = new Date('2026-10-17T00:00:00+05:30').getTime();
+    const now = new Date().getTime();
+    const diff = sasthiTarget - now;
+
+    if (diff <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((diff % (1000 * 60)) / 1000)
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
-        return { ...prev, seconds: 59, minutes: prev.minutes > 0 ? prev.minutes - 1 : 59 };
-      });
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearInterval(timer);
   }, []);
