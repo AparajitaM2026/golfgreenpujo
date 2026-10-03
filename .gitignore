@@ -1,5 +1,15 @@
 node_modules
-dist
-assets
 .DS_Store
 *.local
+
+# Ignore heavy image duplicates in root assets and dist to keep repo lightweight (<5MB)
+assets/*
+dist/*
+
+# Unignore compiled JS & CSS bundle assets required for Hostinger deployment
+!assets/*.js
+!assets/*.css
+!dist/index.html
+!dist/assets/
+!dist/assets/*.js
+!dist/assets/*.css
