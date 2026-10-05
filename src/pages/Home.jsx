@@ -107,6 +107,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
 
             <h1 className="text-4xl sm:text-6xl font-black font-heading leading-tight text-white drop-shadow-lg">
               Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-red-400">Golf Green Sharadotsav Committee</span>
+              <span className="block text-2xl sm:text-3xl text-amber-300 font-serif mt-2">গল্ফ গ্রীন শারদোৎসব কমিটি</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
@@ -116,14 +117,14 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
               <button
                 onClick={() => setActivePage('schedule')}
-                className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-7 py-4 rounded-2xl text-sm transition shadow-xl shadow-amber-500/20 flex items-center gap-2"
+                className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-7 py-4 rounded-2xl text-sm transition shadow-xl shadow-amber-500/20 flex items-center gap-2 cursor-pointer"
               >
                 <Calendar size={18} />
                 <span>View Puja Nirghanto</span>
               </button>
               <button
                 onClick={() => setActivePage('gallery')}
-                className="bg-slate-900/90 hover:bg-slate-800 text-white border border-amber-500/40 px-7 py-4 rounded-2xl font-bold text-sm transition flex items-center gap-2 shadow-lg"
+                className="bg-slate-900/90 hover:bg-slate-800 text-white border border-amber-500/40 px-7 py-4 rounded-2xl font-bold text-sm transition flex items-center gap-2 shadow-lg cursor-pointer"
               >
                 <Camera size={18} className="text-amber-400" />
                 <span>Photo & Video Gallery</span>
@@ -131,51 +132,58 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
             </div>
           </div>
 
-          {/* Right Column: Hero Image & Countdown Overlay Card */}
-          <div className="lg:col-span-5 relative">
+          {/* Right Column: Hero Durga Maa Image & Separate Countdown Card */}
+          <div className="lg:col-span-5 space-y-4">
+            
+            {/* Durga Maa Featured Photo Card */}
             <div className="relative rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl group">
               <img 
                 src={heroPhoto} 
-                alt="Golf Green Durga Puja Idol" 
-                className="w-full h-[480px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                alt="Golf Green Sharadotsav Durga Maa Idol" 
+                className="w-full h-[360px] sm:h-[400px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => handleImgError(e, 'hero_durga_idol.png')}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-              
-              <div className="absolute bottom-6 left-6 right-6 bg-slate-950/80 backdrop-blur-md p-6 rounded-2xl border border-amber-500/40 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <Sparkles size={14} /> Maha Sasthi Countdown
-                  </span>
-                  <span className="text-[10px] bg-red-800 text-amber-300 font-extrabold px-2.5 py-0.5 rounded-full">
-                    Live
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-4 gap-2 text-center">
-                  <div className="bg-slate-900/90 p-2.5 rounded-xl border border-amber-500/30">
-                    <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.days}</div>
-                    <div className="text-[9px] font-bold uppercase text-slate-400">Days</div>
-                  </div>
-                  <div className="bg-slate-900/90 p-2.5 rounded-xl border border-amber-500/30">
-                    <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.hours}</div>
-                    <div className="text-[9px] font-bold uppercase text-slate-400">Hours</div>
-                  </div>
-                  <div className="bg-slate-900/90 p-2.5 rounded-xl border border-amber-500/30">
-                    <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.minutes}</div>
-                    <div className="text-[9px] font-bold uppercase text-slate-400">Mins</div>
-                  </div>
-                  <div className="bg-slate-900/90 p-2.5 rounded-xl border border-amber-500/30">
-                    <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.seconds}</div>
-                    <div className="text-[9px] font-bold uppercase text-slate-400">Secs</div>
-                  </div>
-                </div>
-
-                <div className="text-xs text-amber-300 font-bold flex items-center justify-center gap-1.5 pt-1">
-                  <MapPin size={14} /> Venue: Golf Green Central Park Ground
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+              <div className="absolute bottom-3 left-3 right-3 text-center bg-slate-950/80 backdrop-blur-sm py-1.5 px-3 rounded-xl border border-amber-500/30 text-xs font-bold text-amber-300">
+                🪔 সাবেকি একচালা দুর্গা প্রতিমা • গল্ফ গ্রীন শারদোৎসব কমিটি
               </div>
             </div>
+
+            {/* Dedicated Countdown Card */}
+            <div className="bg-slate-900/95 backdrop-blur-md p-5 sm:p-6 rounded-3xl border-2 border-amber-500/40 space-y-4 shadow-2xl">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Sparkles size={14} /> Maha Sasthi Countdown
+                </span>
+                <span className="text-[10px] bg-red-800 text-amber-300 font-extrabold px-2.5 py-0.5 rounded-full animate-pulse">
+                  Live
+                </span>
+              </div>
+
+              <div className="grid grid-cols-4 gap-2.5 text-center">
+                <div className="bg-slate-950 p-2.5 sm:p-3 rounded-2xl border border-amber-500/30">
+                  <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.days}</div>
+                  <div className="text-[9px] font-bold uppercase text-slate-400">Days</div>
+                </div>
+                <div className="bg-slate-950 p-2.5 sm:p-3 rounded-2xl border border-amber-500/30">
+                  <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.hours}</div>
+                  <div className="text-[9px] font-bold uppercase text-slate-400">Hours</div>
+                </div>
+                <div className="bg-slate-950 p-2.5 sm:p-3 rounded-2xl border border-amber-500/30">
+                  <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.minutes}</div>
+                  <div className="text-[9px] font-bold uppercase text-slate-400">Mins</div>
+                </div>
+                <div className="bg-slate-950 p-2.5 sm:p-3 rounded-2xl border border-amber-500/30">
+                  <div className="text-xl sm:text-2xl font-black text-amber-400">{timeLeft.seconds}</div>
+                  <div className="text-[9px] font-bold uppercase text-slate-400">Secs</div>
+                </div>
+              </div>
+
+              <div className="text-xs text-amber-300 font-bold flex items-center justify-center gap-1.5 pt-1 border-t border-amber-500/20">
+                <MapPin size={14} /> Venue: Golf Green Central Park Ground
+              </div>
+            </div>
+
           </div>
 
         </div>
