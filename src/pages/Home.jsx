@@ -137,7 +137,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
               <img 
                 src={heroPhoto} 
                 alt="Golf Green Durga Puja Idol" 
-                className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-[480px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 onError={(e) => handleImgError(e, 'hero_durga_idol.png')}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
