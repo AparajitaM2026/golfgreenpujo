@@ -58,7 +58,7 @@ export default function Contact({ onAddContact }) {
               <div>
                 <h4 className="text-base font-bold text-white">Mandap Location</h4>
                 <p className="text-slate-300 text-xs mt-1 leading-relaxed">
-                  Golf Green Sarbojanin Durga Puja Mandap<br />
+                  Golf Green Sharadotsav Committee Mandap<br />
                   Golf Green Central Park Ground, Phase IV,<br />
                   Golf Green, Kolkata - 700095, West Bengal
                 </p>

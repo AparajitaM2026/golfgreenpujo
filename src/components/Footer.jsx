@@ -38,7 +38,7 @@ export default function Footer({ setActivePage }) {
               Celebrating decades of cultural grandeur, community bonding, traditional rituals, and social welfare in Golf Green Urban Complex, Kolkata.
             </p>
             <div className="pt-2 text-xs font-bold text-amber-400 flex items-center gap-2">
-              <ShieldCheck size={16} /> Regd. Sarbojanin Durga Puja Committee
+              <ShieldCheck size={16} /> Regd. Sharadotsav Committee
             </div>
           </div>
 
@@ -119,7 +119,7 @@ export default function Footer({ setActivePage }) {
         {/* Bottom copyright line */}
         <div className="mt-12 pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
           <div>
-            © {new Date().getFullYear()} Golf Green Sarbojanin Durga Puja Committee. All Rights Reserved.
+            © {new Date().getFullYear()} Golf Green Sharadotsav Committee. All Rights Reserved.
           </div>
           <button
             onClick={scrollToTop}

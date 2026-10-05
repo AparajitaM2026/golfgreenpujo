@@ -87,7 +87,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
         </div>
         <div className="truncate flex-1">
           <span className="inline-block animate-pulse">
-            {noticeText || '📢 Welcome to Golf Green Sarbojanin Durga Puja 2026 • Pushpanjali Registrations & Chanda Desk Open • Dhunuchi Naach & Cultural Registrations Live!'}
+            {noticeText || '📢 Welcome to Golf Green Sharadotsav Committee 2026 • Pushpanjali Registrations & Chanda Desk Open • Dhunuchi Naach & Cultural Registrations Live!'}
           </span>
         </div>
       </div>
@@ -106,7 +106,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
             </span>
 
             <h1 className="text-4xl sm:text-6xl font-black font-heading leading-tight text-white drop-shadow-lg">
-              Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-red-400">Golf Green Sarbojanin Durga Puja</span>
+              Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-red-400">Golf Green Sharadotsav Committee</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">

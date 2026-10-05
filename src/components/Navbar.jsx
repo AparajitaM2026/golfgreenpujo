@@ -28,7 +28,7 @@ export default function Navbar({ activePage, setActivePage }) {
     <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-amber-500/30 shadow-2xl">
       {/* Top Festival Sub-Header */}
       <div className="bg-gradient-to-r from-red-950 via-amber-900 to-red-950 text-amber-300 py-1 px-4 text-center text-xs font-bold border-b border-amber-500/20 flex items-center justify-between">
-        <span className="hidden sm:inline-block">🪔 Golf Green Sarbojanin Durga Puja Sharadotsav</span>
+        <span className="hidden sm:inline-block">🪔 Golf Green Sharadotsav Committee</span>
         <span className="mx-auto sm:mx-0 flex items-center gap-2">
           <span>✨ Festival Helpline: <strong className="text-white">+91 9804409596</strong></span>
         </span>

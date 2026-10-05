@@ -15,7 +15,7 @@ export default function Committee({ committeeMembers }) {
             Executive Committee Office Bearers
           </h1>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            The dedicated team of residents, organizers, and volunteers managing Golf Green Sarbojanin Durga Puja.
+            The dedicated team of residents, organizers, and volunteers managing Golf Green Sharadotsav Committee.
           </p>
         </div>
 
