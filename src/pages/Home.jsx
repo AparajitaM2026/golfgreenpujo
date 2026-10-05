@@ -106,7 +106,7 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
             </span>
 
             <h1 className="text-4xl sm:text-6xl font-black font-heading leading-tight text-white drop-shadow-lg">
-              Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-red-400">Golf Green Sharadotsav Committee</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-red-400">Golf Green Sarodotsava Committee</span>
               <span className="block text-2xl sm:text-3xl text-amber-300 font-serif mt-2">গল্ফ গ্রীন শারদোৎসব কমিটি</span>
             </h1>
 
