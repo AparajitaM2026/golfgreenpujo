@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, Sparkles, Award, User, Palette, Feathers, Heart, Sun } from 'lucide-react';
+import { Compass, Sparkles, Award, User, Palette, Feather, Heart, Sun } from 'lucide-react';
 
 const articleDurgaImg = 'gallery/article_sabeki_durga.jpg';
 const articleThakurDalanImg = 'gallery/article_thakur_dalan.jpg';
