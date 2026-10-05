@@ -181,6 +181,85 @@ export default function Home({ noticeText, pujoSchedule, culturalLineup, setActi
         </div>
       </section>
 
+      {/* 2.5. 45th Year Special Editorial Feature Section */}
+      <section className="py-16 bg-gradient-to-b from-slate-950 via-red-950/40 to-slate-950 border-b border-amber-500/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="bg-slate-900/90 rounded-3xl border border-amber-500/40 p-6 sm:p-10 shadow-2xl space-y-8">
+            
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-amber-500/20 pb-6">
+              <div>
+                <span className="inline-block px-3.5 py-1 bg-red-950 text-amber-300 font-extrabold text-[11px] tracking-widest uppercase rounded-full border border-amber-500/40 mb-2">
+                  🪔 ৪৫ তম বর্ষের বিশেষ নিবেদন • 45th Year Milestone
+                </span>
+                <h2 className="text-2xl sm:text-4xl font-black font-heading text-white">
+                  ফিরে দেখা জমিদার বাড়ির ঠাকুর দালান
+                </h2>
+                <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-slate-300 mt-2">
+                  <span className="text-amber-400">✍️ লেখা ও ভাবনা: <strong className="text-white">অমিত চক্রবর্তী (Amit Chakraborty)</strong></span>
+                  <span className="text-slate-500">•</span>
+                  <span className="text-amber-400">🎨 প্রতিমা শিল্পী: <strong className="text-white">মধুসূদন রায় (Madhusudan Roy)</strong></span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setActivePage('theme')}
+                className="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black px-6 py-3 rounded-2xl text-xs transition shadow-lg flex items-center gap-2 shrink-0 cursor-pointer"
+              >
+                <span>সম্পূর্ণ বিবরণ পড়ুন</span>
+                <ArrowRight size={16} />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              
+              <div className="lg:col-span-6 space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                <p>
+                  চার দশক পেরিয়ে পঁয়তাল্লিশে পা দিতে চলেছে গল্ফ গ্রীন শারদোৎসব কমিটি। এলাকার আবাসিকদের বহুদিনের ইচ্ছাকে মর্যাদা দিয়ে চিরাচরিত থিম পুজো থেকে সরে একচালার সাবেকি পুজোয় ফিরতে চলেছে।
+                </p>
+                <p className="bg-slate-950 p-4 rounded-2xl border-l-4 border-amber-400 text-amber-200 text-xs sm:text-sm font-semibold">
+                  “মণ্ডপে ফুটে উঠবে এক প্রাচীন বনেদি বাড়ির আবহ — খিলান, স্তম্ভ, পুরোনো দেওয়ালের নকশা, লোহার গ্রিল, কাঠের দরজা-জানালা, ঝাড়বাতি ও আলোর মায়ায় তৈরী হবে হারিয়ে যাওয়া এক সময়ের স্মৃতি।”
+                </p>
+                <p>
+                  এই আবহের কেন্দ্রবিন্দু হবে সাবেকি একচালা দুর্গা প্রতিমা। একই কাঠামোর মধ্যে মা দুর্গাকে ঘিরে থাকবেন লক্ষী, সরস্বতী, কার্তিক ও গনেশ। ডাকের সাজ, শোলার কাজ ও সাবেকি অলংকরণে ফুটে উঠবে বাংলার নিজস্ব শিল্প রীতি।
+                </p>
+              </div>
+
+              <div className="lg:col-span-6 grid grid-cols-2 gap-4">
+                <div className="rounded-2xl overflow-hidden border border-amber-500/40 h-56 sm:h-64 shadow-lg group relative bg-slate-950">
+                  <img 
+                    src="gallery/article_thakur_dalan.jpg" 
+                    alt="জমিদার বাড়ির ঠাকুর দালান" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    onError={(e) => { if (!e.target.dataset.tried) { e.target.dataset.tried = 'true'; e.target.src = '/gallery/article_thakur_dalan.jpg'; } }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-3 left-3 right-3 text-[11px] font-extrabold text-white text-center">
+                    জমিদার বাড়ির ঠাকুর দালান
+                  </div>
+                </div>
+
+                <div className="rounded-2xl overflow-hidden border border-amber-500/40 h-56 sm:h-64 shadow-lg group relative bg-slate-950">
+                  <img 
+                    src="gallery/article_sabeki_durga.jpg" 
+                    alt="সাবেকি একচালা দুর্গা প্রতিমা" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    onError={(e) => { if (!e.target.dataset.tried) { e.target.dataset.tried = 'true'; e.target.src = '/gallery/article_sabeki_durga.jpg'; } }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-3 left-3 right-3 text-[11px] font-extrabold text-amber-300 text-center">
+                    সাবেকি একচালা প্রতিমা • শিল্পী মধুসূদন রায়
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
       {/* 3. Featured Photo Showcase Section */}
       <section className="py-20 bg-slate-950 border-b border-slate-900 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
