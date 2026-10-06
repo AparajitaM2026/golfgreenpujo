@@ -1,4 +1,4 @@
-export const initialNotice = '📢 Welcome to Golf Green Sharadotsav Committee 2026 • 24x7 Festival Control Room: +91 9804409596 • Pushpanjali Registration & Chanda Desk Open • Dhunuchi Naach & Cultural Registrations Live!';
+export const initialNotice = '📢 Welcome to Golf Green Sharadotsav Durga Puja 2026 • 24x7 Festival Control Room: +91 9804409596 • Pushpanjali Registration & Chanda Desk Open • Dhunuchi Naach & Cultural Registrations Live!';
 
 export const pujoSchedule = [
   {
